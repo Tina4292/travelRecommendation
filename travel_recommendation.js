@@ -31,11 +31,11 @@ async function searchRecommendations() {
     results = data.beaches;
   } else if (input.includes("temple")) {
     results = data.temples;
-  } else if (input.includes("country") || input.includes("countries")) {
-    // Flatten all cities from all countries
+  } else if (["country", "countries"].some(word => input.includes(word))) {
+    // User typed "country" or "countries" → show all cities from all countries
     results = data.countries.flatMap(country => country.cities);
   } else {
-    // Try to match a specific country name
+    // Match a specific country name
     const matchedCountry = data.countries.find(country =>
       country.name.toLowerCase().includes(input)
     );
@@ -44,6 +44,7 @@ async function searchRecommendations() {
     }
   }
 
+  // Show results or fallback message
   if (results.length === 0) {
     document.getElementById("results").innerHTML = "<p>No results found.</p>";
   } else {
