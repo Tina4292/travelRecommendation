@@ -135,6 +135,10 @@ input, textarea {
   color: white;
 }
 
+h1, h2 {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
 .tagline {
   font-size: 1.2em;
   font-style: italic;
