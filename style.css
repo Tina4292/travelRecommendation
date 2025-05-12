@@ -1,34 +1,50 @@
-body {
+/* Full-page background image */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  padding: 20px;
+  background: url('images/header-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
 }
 
+/* Navbar */
 nav {
-  background-color: #007acc;
+  background-color: rgba(0, 122, 204, 0.9); /* semi-transparent for style */
   padding: 10px;
   color: white;
 }
 
+/* Navbar links */
 nav a {
   color: white;
   margin-right: 15px;
   text-decoration: none;
 }
 
+/* Header content (no bg here anymore) */
 header {
-  background-size: cover;
-  color: white;
   text-align: center;
   padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* optional overlay */
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 800px;
 }
 
+/* Search results / cards */
 .place-card {
+  background-color: rgba(255, 255, 255, 0.9); /* light background for readability */
+  color: black;
   border: 1px solid #ddd;
   margin: 10px 0;
   padding: 10px;
+  border-radius: 8px;
 }
 
 .place-card img {
   width: 100%;
   max-width: 400px;
+  border-radius: 4px;
 }
