@@ -134,3 +134,11 @@ input, textarea {
   margin: 30px auto;
   color: white;
 }
+
+.tagline {
+  font-size: 1.2em;
+  font-style: italic;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  color: #f2e9ff;
+}
