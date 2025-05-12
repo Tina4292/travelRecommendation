@@ -23,7 +23,7 @@ function displayRecommendations(results) {
 }
 
 async function searchRecommendations() {
-    const input = document.getElementById("searcInput").value.toLowerCase();
+    const input = document.getElementById("searchInput").value.toLowerCase();
     const recommendations = await fetchRecommendations();
 
     const filtered = recommendations.filter(place =>
