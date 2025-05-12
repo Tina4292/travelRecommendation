@@ -25,22 +25,19 @@ function displayRecommendations(results) {
 async function searchRecommendations() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const data = await fetchRecommendations();
-
   let results = [];
 
   if (input.includes("beach")) {
     results = data.beaches;
   } else if (input.includes("temple")) {
     results = data.temples;
-  } else if (
-    input.includes("japan") || input.includes("brazil") || input.includes("australia")
-  ) {
-    // Flatten cities from matching country
-    const matchedCountry = data.countries.find(country =>
-      country.name.toLowerCase().includes(input)
-    );
-    if (matchedCountry) {
-      results = matchedCountry.cities;
+  } else {
+    // Check countries
+    for (let country of data.countries) {
+      if (country.name.toLowerCase().includes(input)) {
+        results = country.cities;
+        break;
+      }
     }
   }
 
