@@ -23,15 +23,32 @@ function displayRecommendations(results) {
 }
 
 async function searchRecommendations() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const recommendations = await fetchRecommendations();
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const data = await fetchRecommendations();
 
-    const filtered = recommendations.filter(place =>
-        place.type.toLowerCase() === input ||
-        place.name.toLowerCase().includes(input)
+  let results = [];
+
+  if (input.includes("beach")) {
+    results = data.beaches;
+  } else if (input.includes("temple")) {
+    results = data.temples;
+  } else if (
+    input.includes("japan") || input.includes("brazil") || input.includes("australia")
+  ) {
+    // Flatten cities from matching country
+    const matchedCountry = data.countries.find(country =>
+      country.name.toLowerCase().includes(input)
     );
+    if (matchedCountry) {
+      results = matchedCountry.cities;
+    }
+  }
 
-    displayRecommendations(filtered);
+  if (results.length === 0) {
+    document.getElementById("results").innerHTML = "<p>No results found.</p>";
+  } else {
+    displayRecommendations(results);
+  }
 }
 
 function clearResults() {
