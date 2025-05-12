@@ -31,13 +31,16 @@ async function searchRecommendations() {
     results = data.beaches;
   } else if (input.includes("temple")) {
     results = data.temples;
+  } else if (input.includes("country") || input.includes("countries")) {
+    // Flatten all cities from all countries
+    results = data.countries.flatMap(country => country.cities);
   } else {
-    // Check countries
-    for (let country of data.countries) {
-      if (country.name.toLowerCase().includes(input)) {
-        results = country.cities;
-        break;
-      }
+    // Try to match a specific country name
+    const matchedCountry = data.countries.find(country =>
+      country.name.toLowerCase().includes(input)
+    );
+    if (matchedCountry) {
+      results = matchedCountry.cities;
     }
   }
 
